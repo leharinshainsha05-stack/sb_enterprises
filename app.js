@@ -227,6 +227,7 @@ const CLIENT_BASE_DISCOUNT_PCT = 0.15; // 15% Gold status standard B2B discount 
 
 document.addEventListener('DOMContentLoaded', () => {
     initCursor();
+    initMobileMenu();
     initGSAPAnimations();
     initHeaderScrollSpy();
     initB2BPortalLogic();
@@ -276,6 +277,68 @@ function addCursorHoverClass() {
 
 function removeCursorHoverClass() {
     document.body.classList.remove('cursor-hover');
+}
+
+// ==========================================================================
+// MOBILE NAVIGATION MENU DRAWER LOGIC
+// ==========================================================================
+
+function initMobileMenu() {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const drawerLinks = document.querySelectorAll('.drawer-link-item');
+    const drawerQuoteBtn = document.getElementById('drawer-quote-btn');
+
+    if (!toggleBtn || !drawer) return;
+
+    function openDrawer() {
+        drawer.classList.add('active');
+        toggleBtn.classList.add('active');
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove('active');
+        toggleBtn.classList.remove('active');
+    }
+
+    toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (drawer.classList.contains('active')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeDrawer();
+        });
+    }
+
+    // Close drawer when a link or quote button is clicked
+    drawerLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeDrawer();
+        });
+    });
+
+    if (drawerQuoteBtn) {
+        drawerQuoteBtn.addEventListener('click', () => {
+            closeDrawer();
+        });
+    }
+
+    // Click outside to close drawer
+    document.addEventListener('click', (e) => {
+        if (drawer.classList.contains('active') && !drawer.contains(e.target) && e.target !== toggleBtn) {
+            closeDrawer();
+        }
+    });
 }
 
 // ==========================================================================
@@ -1532,7 +1595,7 @@ function renderB2BDashboard(selectedOrderId) {
                 
                 <!-- STEPPER PROGRESS BAR -->
                 <div class="order-stepper">
-                    <div class="order-stepper-progress" style="width: ${progressPct}%;"></div>
+                    <div class="order-stepper-progress" style="width: ${progressPct}%; height: ${progressPct}%;"></div>
         `;
 
         activeOrder.tracking.forEach((step, idx) => {

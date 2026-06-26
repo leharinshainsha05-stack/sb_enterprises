@@ -62,8 +62,41 @@
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
             </button>
+            
+            <!-- Hamburger Menu Toggle for Mobile -->
+            <button class="hamburger-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer Overlay -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+        <div class="drawer-header">
+            <span class="drawer-title">SB ENTERPRISES</span>
+            <button class="drawer-close" id="mobile-menu-close" aria-label="Close Navigation Menu">&times;</button>
+        </div>
+        <nav class="drawer-links">
+            <a href="#section-hook" class="drawer-link-item">Overview</a>
+            <a href="#section-specs" class="drawer-link-item">Specs</a>
+            <a href="#section-anatomy" class="drawer-link-item">Anatomy</a>
+            <a href="#section-catalog" class="drawer-link-item">Product</a>
+            <a href="#section-rfq" class="drawer-link-item">Procure</a>
+            <a href="#section-contact" class="drawer-link-item">Contact</a>
+        </nav>
+        <div class="drawer-footer">
+            <div class="client-tier-badge" style="margin-bottom: 20px; justify-content: center;">
+                <span class="dot gold"></span>
+                <span>GOLD MEMBER</span>
+            </div>
+            <a href="#section-rfq" class="primary-btn accent-btn cta-btn btn-full" id="drawer-quote-btn">
+                <span>Request Quote</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+        </div>
+    </div>
 
     <!-- Scrollytelling Fixed Stage & Scroll Containers -->
     <div id="scrollytelling-wrapper">
@@ -90,30 +123,7 @@
                 <path id="path-mounting" d="M 850 700 L 650 700 L 520 750" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-dasharray="1000" stroke-dashoffset="1000" />
             </svg>
 
-            <!-- Floating Schematic Anatomy Cards -->
-            <div class="anatomy-callout left-callout" id="callout-solenoid" style="top: 21%; left: 8%;">
-                <span class="callout-tag">Component 01</span>
-                <h4>Threaded Fitting Body</h4>
-                <p>Precision-machined from solid CZ121 brass. Features BSP/NPT threads designed for high-vibration sealing borders.</p>
-            </div>
-
-            <div class="anatomy-callout left-callout" id="callout-spool" style="top: 71%; left: 8%;">
-                <span class="callout-tag">Component 02</span>
-                <h4>Double Ferrule Sleeve</h4>
-                <p>High-tensile sleeve designed to bite into tubing. Provides mechanical grip and dual-line leak containment.</p>
-            </div>
-
-            <div class="anatomy-callout right-callout" id="callout-seals" style="top: 26%; right: 8%;">
-                <span class="callout-tag">Component 03</span>
-                <h4>Hex Compression Nut</h4>
-                <p>Heavy-duty brass drive nut. Distributes high axial clamping forces to lock sleeves uniformly.</p>
-            </div>
-
-            <div class="anatomy-callout right-callout" id="callout-mounting" style="top: 66%; right: 8%;">
-                <span class="callout-tag">Component 04</span>
-                <h4>Viton FKM Quad Seals</h4>
-                <p>Viton fluorocarbon rubber internal core seal. Provides high chemical and thermal threshold protection (-40°C to +220°C).</p>
-            </div>
+            <!-- Floating Schematic Anatomy Cards moved inside section-anatomy for mobile stacking flow -->
 
             <!-- Scroll Indicator -->
             <div class="scroll-explore" id="scroll-explore">
@@ -132,6 +142,10 @@
                     <span class="title-overhead">SB ENTERPRISES • ESTABLISHED QUALITY</span>
                     <h1 class="giant-distressed-title">PRECISION FORGED</h1>
                     <p class="hero-paragraph">Welcome to the PN-BCF-12 Solid Brass Compression Coupling. Designed to operate at extreme structural boundaries and secure fluid channels without mechanical fatigue.</p>
+                </div>
+                <!-- Inline mobile asset fitting, displayed only on max-width: 992px -->
+                <div class="mobile-hero-image d-none">
+                    <img src="assets/brass_fitting.png" alt="SB-BCF-12 Double-Ferrule Brass Coupling">
                 </div>
                 <div class="hero-right-col">
                     <p class="hero-paragraph-right">Engineered for high-integrity piping systems and industrial setups. SB Enterprises supplies premium-grade fluid connectors, seals, and piping systems from Chennai's premier industrial cluster. Each component undergoes strict tolerance validation and pressure testing to guarantee field reliability.</p>
@@ -159,10 +173,39 @@
 
         <!-- SECTION 3: ANATOMY -->
         <section class="scroll-section" id="section-anatomy">
+            <!-- Floating Schematic Anatomy Cards (Positioned absolutely on desktop, stacked on mobile) -->
+            <div class="anatomy-callout left-callout" id="callout-solenoid" style="top: 21%; left: 8%;">
+                <span class="callout-tag">Component 01</span>
+                <h4>Threaded Fitting Body</h4>
+                <p>Precision-machined from solid CZ121 brass. Features BSP/NPT threads designed for high-vibration sealing borders.</p>
+            </div>
+
+            <div class="anatomy-callout left-callout" id="callout-spool" style="top: 71%; left: 8%;">
+                <span class="callout-tag">Component 02</span>
+                <h4>Double Ferrule Sleeve</h4>
+                <p>High-tensile sleeve designed to bite into tubing. Provides mechanical grip and dual-line leak containment.</p>
+            </div>
+
+            <div class="anatomy-callout right-callout" id="callout-seals" style="top: 26%; right: 8%;">
+                <span class="callout-tag">Component 03</span>
+                <h4>Hex Compression Nut</h4>
+                <p>Heavy-duty brass drive nut. Distributes high axial clamping forces to lock sleeves uniformly.</p>
+            </div>
+
+            <div class="anatomy-callout right-callout" id="callout-mounting" style="top: 66%; right: 8%;">
+                <span class="callout-tag">Component 04</span>
+                <h4>Viton FKM Quad Seals</h4>
+                <p>Viton fluorocarbon rubber internal core seal. Provides high chemical and thermal threshold protection (-40°C to +220°C).</p>
+            </div>
+
             <div class="section-container">
                 <div class="section-heading-center">
                     <span class="title-overhead">Mechanical Breakdown</span>
                     <h2 class="giant-distressed-title text-center">ENGINEERED ANATOMY</h2>
+                </div>
+                <!-- Inline mobile asset diagram, displayed only on max-width: 992px -->
+                <div class="mobile-anatomy-image d-none">
+                    <img src="assets/brass_fitting.png" alt="Double-Ferrule Brass Assembly blueprint">
                 </div>
             </div>
         </section>
