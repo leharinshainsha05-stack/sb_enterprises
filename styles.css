@@ -2307,6 +2307,51 @@ body.cursor-hover .custom-cursor {
     .bank-grid {
         grid-template-columns: 1fr !important;
     }
+
+    /* B2B RFQ Portal form responsive stacking */
+    .form-row-group {
+        flex-direction: column !important;
+        gap: 15px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .form-group {
+        width: 100% !important;
+    }
+
+    /* Reduce paddings in B2B Quote Card to prevent edge cropping */
+    .rfq-portal-wrapper {
+        padding: 20px 15px !important;
+        gap: 20px !important;
+    }
+
+    .selector-card-group {
+        padding: 15px !important;
+    }
+
+    .pricing-calculator-banner {
+        padding: 10px 12px !important;
+    }
+
+    .portal-cta-row {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .portal-cta-row .cad-btn,
+    .portal-cta-row .cta-actions-group {
+        width: 100% !important;
+    }
+
+    .portal-cta-row .cta-actions-group {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    /* Reduce spec card paddings to prevent narrow content squishing */
+    .spec-flank-card {
+        padding: 30px 20px !important;
+    }
 }
 
 /* ==========================================================================
