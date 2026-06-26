@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SB Enterprises - Chennai Washermenpet. Immersive B2B procurement portal for high-performance industrial engineering components, brass fittings, seals, tools, and custom RFQ quotes.">
+    <title>SB Enterprises | Precision Industrial Components & B2B Procurement</title>
+    <!-- Google Fonts: Outfit (Display & Headings) & Inter (Body Copy) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- GSAP & ScrollTrigger Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- SVG Distressed Stamped Typography Filter -->
+    <svg style="position: absolute; width: 0; height: 0;" width="0" height="0">
+        <filter id="distress-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
+
+    <!-- Custom Industrial Target Cursor -->
+    <div class="custom-cursor" id="custom-cursor">
+        <div class="cursor-crosshair"></div>
+    </div>
+
+    <!-- Sticky B2B Header -->
+    <header class="sticky-header">
+        <div class="logo-area">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                <path d="M12 2L2 7.2V16.8L12 22L22 16.8V7.2L12 2Z"/>
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 2V6M12 18V22M2 12H6M18 12H22"/>
+            </svg>
+            <span class="logo-text">SB <span class="logo-subtext">ENTERPRISES</span></span>
+        </div>
+        <nav class="nav-links">
+            <a href="#section-hook" class="nav-link-item active">Overview</a>
+            <a href="#section-specs" class="nav-link-item">Specs</a>
+            <a href="#section-anatomy" class="nav-link-item">Anatomy</a>
+            <a href="#section-catalog" class="nav-link-item">Product</a>
+            <a href="#section-rfq" class="nav-link-item">Procure</a>
+            <a href="#section-contact" class="nav-link-item">Contact</a>
+        </nav>
+        <div class="header-cta-group">
+            <div class="client-tier-badge">
+                <span class="dot gold"></span>
+                <span>GOLD MEMBER</span>
+            </div>
+            <a href="#section-rfq" class="primary-btn accent-btn cta-btn">
+                <span>Request Quote</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <button class="nav-avatar-btn" id="nav-avatar-btn" title="Client Profile & Order Status">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Scrollytelling Fixed Stage & Scroll Containers -->
+    <div id="scrollytelling-wrapper">
+        <!-- Blueprint Parallax Grid Backgrounds (Layered behind scrolling sections) -->
+        <div class="blueprint-grid bg-grid-1"></div>
+        <div class="blueprint-grid bg-grid-2"></div>
+
+        <!-- Pinned Presentation Layer -->
+        <div id="pinned-stage">
+            <!-- Central Product Anchor -->
+            <div class="hero-product-container" id="hero-product-container">
+                <img src="assets/brass_fitting.png" id="hero-product" alt="SB-BCF-12 Heavy-Duty Brass Compression Fitting">
+            </div>
+
+            <!-- SVG Anatomy Path Mesh Overlay -->
+            <svg class="anatomy-svg" id="anatomy-svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
+                <!-- Solenoid/Body Line -->
+                <path id="path-solenoid" d="M 150 250 L 350 250 L 460 320" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-dasharray="1000" stroke-dashoffset="1000" />
+                <!-- Spool/Ferrule Line -->
+                <path id="path-spool" d="M 150 750 L 320 750 L 470 540" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-dasharray="1000" stroke-dashoffset="1000" />
+                <!-- Seals/Nut Line -->
+                <path id="path-seals" d="M 850 300 L 680 300 L 530 460" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-dasharray="1000" stroke-dashoffset="1000" />
+                <!-- Mounting/O-Ring Line -->
+                <path id="path-mounting" d="M 850 700 L 650 700 L 520 750" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-dasharray="1000" stroke-dashoffset="1000" />
+            </svg>
+
+            <!-- Floating Schematic Anatomy Cards -->
+            <div class="anatomy-callout left-callout" id="callout-solenoid" style="top: 21%; left: 8%;">
+                <span class="callout-tag">Component 01</span>
+                <h4>Threaded Fitting Body</h4>
+                <p>Precision-machined from solid CZ121 brass. Features BSP/NPT threads designed for high-vibration sealing borders.</p>
+            </div>
+
+            <div class="anatomy-callout left-callout" id="callout-spool" style="top: 71%; left: 8%;">
+                <span class="callout-tag">Component 02</span>
+                <h4>Double Ferrule Sleeve</h4>
+                <p>High-tensile sleeve designed to bite into tubing. Provides mechanical grip and dual-line leak containment.</p>
+            </div>
+
+            <div class="anatomy-callout right-callout" id="callout-seals" style="top: 26%; right: 8%;">
+                <span class="callout-tag">Component 03</span>
+                <h4>Hex Compression Nut</h4>
+                <p>Heavy-duty brass drive nut. Distributes high axial clamping forces to lock sleeves uniformly.</p>
+            </div>
+
+            <div class="anatomy-callout right-callout" id="callout-mounting" style="top: 66%; right: 8%;">
+                <span class="callout-tag">Component 04</span>
+                <h4>Viton FKM Quad Seals</h4>
+                <p>Viton fluorocarbon rubber internal core seal. Provides high chemical and thermal threshold protection (-40°C to +220°C).</p>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-explore" id="scroll-explore">
+                <span class="explore-txt">Scroll to explore industrial specifications</span>
+                <div class="explore-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrolling Narrative Sections -->
+        <!-- SECTION 1: HOOK (HERO LANDING) -->
+        <section class="scroll-section" id="section-hook">
+            <div class="section-container hero-split-layout">
+                <div class="hero-titles">
+                    <span class="title-overhead">SB ENTERPRISES • ESTABLISHED QUALITY</span>
+                    <h1 class="giant-distressed-title">PRECISION FORGED</h1>
+                    <p class="hero-paragraph">Welcome to the PN-BCF-12 Solid Brass Compression Coupling. Designed to operate at extreme structural boundaries and secure fluid channels without mechanical fatigue.</p>
+                </div>
+                <div class="hero-right-col">
+                    <p class="hero-paragraph-right">Engineered for high-integrity piping systems and industrial setups. SB Enterprises supplies premium-grade fluid connectors, seals, and piping systems from Chennai's premier industrial cluster. Each component undergoes strict tolerance validation and pressure testing to guarantee field reliability.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SPECIFICATIONS -->
+        <section class="scroll-section" id="section-specs">
+            <div class="section-container grid-split-cols">
+                <!-- Left Flank specs -->
+                <div class="spec-flank-card left-flank">
+                    <span class="spec-label">Sustained Pressure</span>
+                    <h2 class="giant-stat">250 BAR</h2>
+                    <p class="spec-desc">Engineered to support heavy hydraulic and high-pressure pneumatic loads, ensuring perfect integrity under dynamic load pulses.</p>
+                </div>
+                <!-- Right Flank specs -->
+                <div class="spec-flank-card right-flank">
+                    <span class="spec-label">Machined Tolerance</span>
+                    <h2 class="giant-stat">0.01MM</h2>
+                    <p class="spec-desc">Micro-ground mechanical clearances prevent flow restrictions, limit turbulence, and guarantee chemical media containment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ANATOMY -->
+        <section class="scroll-section" id="section-anatomy">
+            <div class="section-container">
+                <div class="section-heading-center">
+                    <span class="title-overhead">Mechanical Breakdown</span>
+                    <h2 class="giant-distressed-title text-center">ENGINEERED ANATOMY</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: THE CRAFT & VIDEO MESSAGE -->
+        <section class="scroll-section" id="section-craft">
+            <div class="section-container grid-split-cols align-center">
+                <div class="craft-left">
+                    <span class="title-overhead">B2B Supply Pedigree</span>
+                    <h2 class="section-heading">FLUID CONTROL &amp; PIPING SYSTEMS</h2>
+                    <p class="body-copy">SB Enterprises specializes in high-durability industrial hardware. Operating out of Washermenpet, Chennai, we supply premium grade pneumatic fittings, hydraulic valves, industrial gaskets, and oil seals. Our products undergo strict hydrostatic testing and gauge validation to ensure they meet international ISO and BS standards.</p>
+                </div>
+                <div class="craft-right">
+                    <div class="video-mockup-wrapper" style="background-image: linear-gradient(135deg, rgba(9, 40, 73, 0.9) 0%, rgba(20, 76, 138, 0.7) 100%), url('assets/hero_bg.png');">
+                        <div class="video-play-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        </div>
+                        <div class="video-text">
+                            <span>Watch Manufacturing Standards</span>
+                            <span class="sub">SB-Industrial Forging &amp; Machining (02:40)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: INTERACTIVE PRODUCT CATALOG -->
+        <section class="scroll-section" id="section-catalog">
+            <div class="section-container">
+                <div class="section-heading-center" style="margin-bottom: 40px;">
+                    <span class="title-overhead">Browse Components Directory</span>
+                    <h2 class="giant-distressed-title text-center">PRODUCT CATALOG</h2>
+                    <p class="subtitle text-center" style="max-width: 600px; margin: 10px auto;">Search our active registry of hardware, tube fittings, hydraulics, industrial seals, and engineering tools.</p>
+                </div>
+
+                <!-- Search & Filters Toolbar -->
+                <div class="catalog-toolbar">
+                    <div class="search-box-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" class="search-icon">
+                            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="catalog-search-input" placeholder="Search by SKU or component name...">
+                    </div>
+                    <div class="catalog-filters-tabs">
+                        <button class="tab-btn active" data-filter="all">All</button>
+                        <button class="tab-btn" data-filter="pneumatic">Pneumatics</button>
+                        <button class="tab-btn" data-filter="hydraulic">Hydraulics</button>
+                        <button class="tab-btn" data-filter="seals">Seals</button>
+                        <button class="tab-btn" data-filter="hardware">Hardware</button>
+                        <button class="tab-btn" data-filter="tools">Tools &amp; Rubber</button>
+                    </div>
+                </div>
+
+                <!-- Product Grid Container -->
+                <div class="catalog-grid-items" id="catalog-grid-items">
+                    <!-- Populated dynamically via app.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: B2B PROCUREMENT & RFQ PORTAL -->
+        <section class="scroll-section" id="section-rfq">
+            <div class="section-container rfq-final-portal">
+                <div class="rfq-empty-spacer">
+                    <!-- Left blank because the valve/fitting moves here as our graphic anchor -->
+                </div>
+                
+                <div class="rfq-portal-wrapper">
+                    <div class="rfq-portal-header">
+                        <span class="title-overhead">B2B CONTRACT PROCURE</span>
+                        <h2>Request B2B Quote</h2>
+                        <p class="subtitle">Select items, calculate volumes, download STEP CAD models, and submit your RFQ directly to our sales office.</p>
+                    </div>
+
+                    <!-- Volumetric Product selector -->
+                    <div class="selector-card-group">
+                        <div class="form-row-group">
+                            <div class="form-group">
+                                <label for="product-sku-select">Select Engineering Component</label>
+                                <select id="product-sku-select">
+                                    <!-- Populated dynamically by JS -->
+                                </select>
+                            </div>
+                            <div class="form-group" style="width: 150px; flex-shrink: 0;">
+                                <label for="product-qty-input">Order Qty</label>
+                                <div class="qty-input-wrapper">
+                                    <button class="qty-btn" id="rfq-select-qty-dec">-</button>
+                                    <input type="number" id="product-qty-input" value="10" min="1">
+                                    <button class="qty-btn" id="rfq-select-qty-inc">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-calculator-banner">
+                            <div class="calc-text">
+                                <span class="calc-label">Volumetric Pricing Tier</span>
+                                <span class="calc-discount-tag" id="portal-discount-tag">List Price</span>
+                            </div>
+                            <div class="calc-values">
+                                <span class="calc-label" style="text-align: right;">Unit Price / Subtotal</span>
+                                <span class="calc-price-sum" id="portal-subtotal-display">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="portal-cta-row">
+                            <button class="cad-btn" id="btn-portal-cad-download" style="padding: 10px 20px; font-size: 0.85rem;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                <span>Download CAD (.STEP)</span>
+                            </button>
+                            <div class="cta-actions-group">
+                                <button class="secondary-btn" id="btn-portal-add-rfq">
+                                    Add to RFQ Cart
+                                </button>
+                                <button class="primary-btn accent-btn cta-btn" id="btn-portal-buy-now">
+                                    Buy Now / Pay Online
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RFQ Items Container -->
+                    <div class="rfq-cart-review-block">
+                        <h3>RFQ Cart Items</h3>
+                        <div class="rfq-items-list" id="rfq-items-container">
+                            <!-- Populated dynamically by JS -->
+                            <div class="empty-rfq-state" id="empty-rfq-msg">
+                                <p>No components added to this quote request yet.</p>
+                            </div>
+                        </div>
+                        <button class="clear-all-btn" id="btn-rfq-clear-all" style="margin-top: 10px; display: none;">Clear All Items</button>
+                    </div>
+
+                    <!-- Bulk CSV Pad Toggle link -->
+                    <div class="bulk-toggle-link-area">
+                        <button class="text-link-btn" id="btn-toggle-bulk-pad">Toggle CSV Bulk Order Pad</button>
+                    </div>
+
+                    <!-- Bulk Order Pad (Collapsible) -->
+                    <div class="bulk-collapsible-wrapper" id="bulk-pad-wrapper">
+                        <div class="bulk-pad-inner">
+                            <div class="textarea-wrapper">
+                                <textarea id="bulk-input-area" placeholder="PN-BCF-12, 100&#10;HY-HVF-24, 15&#10;SL-ORG-80, 250" rows="6"></textarea>
+                            </div>
+                            <div class="bulk-actions">
+                                <button class="secondary-btn" id="btn-bulk-clear" style="padding: 8px 16px; font-size: 0.8rem;">Clear</button>
+                                <button class="primary-btn accent-btn cta-btn" id="btn-bulk-validate" style="padding: 8px 16px; font-size: 0.8rem;">Validate &amp; Add</button>
+                            </div>
+                            <div class="validation-feedback-drawer" id="bulk-feedback-drawer"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quote details & Submission Form -->
+                    <div class="quote-submission-card">
+                        <h3>Procurement &amp; Project Info</h3>
+                        <form id="rfq-submission-form">
+                            <div class="form-row-group">
+                                <div class="form-group">
+                                    <label for="rfq-proj-name">Project Name / Reference *</label>
+                                    <input type="text" id="rfq-proj-name" required placeholder="e.g. Phase 2 Assembly Expansion">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rfq-deadline">Target Delivery Date *</label>
+                                    <input type="date" id="rfq-deadline" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row-group">
+                                <div class="form-group">
+                                    <label for="rfq-phone">Contact Phone Number *</label>
+                                    <input type="tel" id="rfq-phone" required placeholder="e.g. +91 95515 05600">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rfq-email">Contact Email Address *</label>
+                                    <input type="email" id="rfq-email" required placeholder="e.g. buyer@company.com">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" id="group-engineering-notes">
+                                <label for="rfq-notes">Specific Engineering Instructions</label>
+                                <textarea id="rfq-notes" placeholder="Specify any custom materials, tolerance ratings, cert packaging, or shipping preferences..."></textarea>
+                            </div>
+
+                            <!-- Dynamic Checkout Fields (Hidden by default) -->
+                            <div class="form-group d-none" id="group-checkout-fields">
+                                <div class="form-group" style="margin-bottom: 12px;">
+                                    <label for="checkout-address">Shipping &amp; Delivery Address *</label>
+                                    <textarea id="checkout-address" placeholder="Enter complete warehouse or site shipping address for freight delivery..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="checkout-gstin">GSTIN Number (Optional - for tax input claim)</label>
+                                    <input type="text" id="checkout-gstin" placeholder="e.g. 33AAAAA1111A1Z1">
+                                </div>
+                            </div>
+
+                            <!-- Payment Mode Selector -->
+                            <div class="form-group" style="margin: 24px 0 16px 0;">
+                                <label>Transaction Method</label>
+                                <div class="payment-mode-selector">
+                                    <label class="radio-label">
+                                        <input type="radio" name="payment-mode" value="quote" checked>
+                                        <span>Request Price Quote (Pay Later)</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="payment-mode" value="checkout">
+                                        <span>Direct Online Checkout (Pay Now)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="price-totals-block">
+                                <div class="total-row">
+                                    <span>Total Items Count</span>
+                                    <span id="summary-items-count">0</span>
+                                </div>
+                                <div class="total-row">
+                                    <span>Standard Base Value</span>
+                                    <span id="summary-base-value">$0.00</span>
+                                </div>
+                                <div class="total-row">
+                                    <span>Gold Member Base Discount (15%)</span>
+                                    <span class="gold-discount-text" id="summary-discount-value">-$0.00</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="total-row final-total">
+                                    <span>Estimated Procurement Total</span>
+                                    <span id="summary-est-total">$0.00</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="primary-btn accent-btn cta-btn btn-full" id="btn-submit-rfq-order">
+                                Submit Request for Quote
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: CONTACT & LOCATION -->
+        <section class="scroll-section" id="section-contact">
+            <div class="section-container">
+                <div class="contact-layout-grid">
+                    <!-- Left: Contact Information Details -->
+                    <div class="contact-info-panel">
+                        <span class="title-overhead">Corporate Contact Office</span>
+                        <h2 class="section-heading">GET IN TOUCH</h2>
+                        <p class="contact-intro">Contact SB Enterprises for all structural components, custom engineering designs, and bulk order agreements.</p>
+                        
+                        <div class="contact-meta-cards">
+                            <div class="meta-card">
+                                <div class="meta-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                </div>
+                                <div class="meta-card-body">
+                                    <span class="meta-label">Proprietor</span>
+                                    <span class="meta-value">S. SHAIK SHABEER</span>
+                                </div>
+                            </div>
+                            
+                            <div class="meta-card">
+                                <div class="meta-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                </div>
+                                <div class="meta-card-body">
+                                    <span class="meta-label">Cell Numbers</span>
+                                    <span class="meta-value">+91 95515 05600</span>
+                                    <span class="meta-value-sub">+91 98844 53400</span>
+                                </div>
+                            </div>
+
+                            <div class="meta-card">
+                                <div class="meta-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                </div>
+                                <div class="meta-card-body">
+                                    <span class="meta-label">Official Email</span>
+                                    <a href="mailto:sb.ent@yahoo.com" class="meta-value email-link">sb.ent@yahoo.com</a>
+                                </div>
+                            </div>
+
+                            <div class="meta-card">
+                                <div class="meta-card-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                </div>
+                                <div class="meta-card-body">
+                                    <span class="meta-label">Warehouse &amp; Office</span>
+                                    <span class="meta-value">New No : 79, Old No : 32/2</span>
+                                    <span class="meta-value">Muthuialu Maistry St, Old Washermenpet</span>
+                                    <span class="meta-value-sub">Chennai - 600 021, Tamil Nadu, India.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Google Maps Embed Card -->
+                    <div class="contact-map-panel">
+                        <div class="map-card-wrapper">
+                            <div class="map-card-header">
+                                <span class="dot live-pulse"></span>
+                                <span>LIVE LOCATION MAP</span>
+                            </div>
+                            <div class="map-iframe-container">
+                                <!-- Google Maps Iframe Embed for Muthuialu Maistry St, Old Washermenpet, Chennai -->
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.666624976722!2d80.28822007588329!3d13.120935511634863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526fa45d6541f5%3A0xe54e601ee98ad97!2sMuthuialu%20Maistry%20St%2C%20 Washermanpet%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1719400000000!5m2!1sen!2sin" 
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- RFQ Submission Success Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal-card">
+            <div class="success-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h2>RFQ Submitted Successfully!</h2>
+            <p>Your Request for Quote has been queued. S. Shaik Shabeer or our sales team will contact you at <strong>sb.ent@yahoo.com</strong> within 2 business hours with a formal PDF quote.</p>
+            <div class="quote-number-tag">
+                <span>Quote Reference: </span><strong id="generated-rfq-id">RFQ-2026-XXXX</strong>
+            </div>
+            <button class="primary-btn accent-btn cta-btn" id="btn-close-modal">Back to Top</button>
+        </div>
+    </div>
+    <!-- Simulated Razorpay Payment Gateway Modal -->
+    <div class="modal-overlay" id="payment-modal">
+        <div class="payment-widget-card">
+            <!-- Razorpay Style Widget Header -->
+            <div class="payment-widget-header">
+                <div class="widget-header-left">
+                    <div class="widget-logo">SB</div>
+                    <div class="widget-merchant-info">
+                        <h4>SB Enterprises</h4>
+                        <p>B2B Procurement Order</p>
+                    </div>
+                </div>
+                <div class="widget-header-right">
+                    <span class="widget-amount" id="payment-widget-amount">$0.00</span>
+                </div>
+            </div>
+
+            <!-- Tab Navigation for Payment Options -->
+            <div class="payment-tabs">
+                <button class="pay-tab-btn active" data-tab="card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    <span>Card</span>
+                </button>
+                <button class="pay-tab-btn" data-tab="upi">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                    <span>UPI / QR</span>
+                </button>
+                <button class="pay-tab-btn" data-tab="netbanking">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M3 21h18M3 10h18M5 6h14M4 10v11M20 10v11M12 10v11M8 10v11M16 10v11"></path></svg>
+                    <span>Netbanking</span>
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="payment-tab-contents">
+                <!-- Card Tab Content -->
+                <div class="pay-tab-content active" id="tab-content-card">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label>Card Number</label>
+                        <div class="card-input-wrapper">
+                            <input type="text" id="pay-card-num" placeholder="4111 2222 3333 4444" maxlength="19">
+                            <span class="card-brand-icon">VISA</span>
+                        </div>
+                    </div>
+                    <div class="form-row-group" style="margin-bottom: 16px;">
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="text" id="pay-card-expiry" placeholder="MM / YY" maxlength="5">
+                        </div>
+                        <div class="form-group" style="width: 100px;">
+                            <label>CVV / CVC</label>
+                            <input type="password" id="pay-card-cvv" placeholder="•••" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UPI Tab Content -->
+                <div class="pay-tab-content" id="tab-content-upi">
+                    <div class="upi-qr-section">
+                        <div class="mock-qr-code">
+                            <svg viewBox="0 0 100 100" width="80" height="80">
+                                <rect x="0" y="0" width="30" height="30" fill="#0C2B4E"></rect>
+                                <rect x="5" y="5" width="20" height="20" fill="#FFFFFF"></rect>
+                                <rect x="10" y="10" width="10" height="10" fill="#0C2B4E"></rect>
+                                <rect x="70" y="0" width="30" height="30" fill="#0C2B4E"></rect>
+                                <rect x="75" y="5" width="20" height="20" fill="#FFFFFF"></rect>
+                                <rect x="80" y="80" width="10" height="10" fill="#0C2B4E"></rect>
+                                <rect x="0" y="70" width="30" height="30" fill="#0C2B4E"></rect>
+                                <rect x="5" y="75" width="20" height="20" fill="#FFFFFF"></rect>
+                                <rect x="10" y="80" width="10" height="10" fill="#0C2B4E"></rect>
+                                <rect x="40" y="40" width="20" height="20" fill="#D3432C"></rect>
+                                <rect x="40" y="10" width="10" height="20" fill="#0C2B4E"></rect>
+                                <rect x="15" y="45" width="15" height="10" fill="#0C2B4E"></rect>
+                                <rect x="75" y="40" width="10" height="20" fill="#0C2B4E"></rect>
+                            </svg>
+                        </div>
+                        <p class="qr-subtext">Scan QR code using Google Pay, PhonePe, or BHIM</p>
+                    </div>
+                    <div class="divider" style="margin: 14px 0; background-color: #E2E8F0;"></div>
+                    <div class="form-group">
+                        <label for="pay-upi-id">Or Enter UPI ID</label>
+                        <input type="text" id="pay-upi-id" placeholder="e.g. merchant@okhdfcbank">
+                    </div>
+                </div>
+
+                <!-- Netbanking Tab Content -->
+                <div class="pay-tab-content" id="tab-content-netbanking">
+                    <p class="nb-title">Select Popular B2B Banks</p>
+                    <div class="bank-grid">
+                        <label class="bank-option">
+                            <input type="radio" name="bank" value="sbi" checked>
+                            <span class="bank-badge">SBI</span>
+                        </label>
+                        <label class="bank-option">
+                            <input type="radio" name="bank" value="hdfc">
+                            <span class="bank-badge">HDFC</span>
+                        </label>
+                        <label class="bank-option">
+                            <input type="radio" name="bank" value="icici">
+                            <span class="bank-badge">ICICI</span>
+                        </label>
+                        <label class="bank-option">
+                            <input type="radio" name="bank" value="axis">
+                            <span class="bank-badge">AXIS</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Action Group -->
+            <div class="payment-widget-footer">
+                <div class="widget-secure-tag">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>Secured by Razorpay API Standard</span>
+                </div>
+                <button class="primary-btn btn-full widget-pay-btn" id="btn-widget-pay">
+                    Pay Now
+                </button>
+                <button class="clear-all-btn btn-full widget-cancel-btn" id="btn-widget-cancel" style="margin-top: 8px;">
+                    Cancel Transaction
+                </button>
+            </div>
+
+            <!-- Loading overlay -->
+            <div class="payment-widget-loader" id="payment-widget-loader">
+                <div class="loader-spinner"></div>
+                <p>Verifying transaction &amp; bank ledger coordinates...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- B2B Client Portal Modal -->
+    <div class="modal-overlay" id="avatar-modal">
+        <div class="modal-card portal-card">
+            <button class="modal-close-corner" id="btn-portal-close">✕</button>
+            
+            <!-- STATE 1: LOGIN (Logged Out) -->
+            <div id="portal-login-state">
+                <div class="portal-header-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <h2>B2B Client Portal</h2>
+                <p>Enter your contact phone number to access your order history, active quotes, and track live shipping progress.</p>
+                
+                <form id="portal-login-form">
+                    <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+                        <label for="portal-phone-input">Contact Phone Number *</label>
+                        <input type="tel" id="portal-phone-input" required placeholder="e.g. +91 95515 05600">
+                    </div>
+                    
+                    <button type="submit" class="primary-btn accent-btn cta-btn btn-full" id="btn-portal-login-submit">
+                        Access Portal
+                    </button>
+                </form>
+            </div>
+            
+            <!-- STATE 2: DASHBOARD (Logged In) -->
+            <div id="portal-dashboard-state" class="d-none">
+                <div class="dashboard-header">
+                    <div class="dashboard-user-badge">
+                        <div class="user-badge-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="user-badge-info">
+                            <span class="user-badge-phone" id="dashboard-user-phone">+91 95515 05600</span>
+                            <span class="user-badge-tier">GOLD PARTNER</span>
+                        </div>
+                    </div>
+                    <button class="text-link-btn" id="btn-portal-logout" style="font-size: 0.75rem; color: var(--color-accent); cursor: pointer;">Log Out</button>
+                </div>
+                
+                <div class="divider" style="margin: 15px 0; background-color: var(--color-border-light);"></div>
+                
+                <!-- SELECT ORDER DROPDOWN (If multiple orders exist) -->
+                <div class="form-group select-order-group d-none" id="portal-order-selector-container" style="text-align: left; margin-bottom: 15px;">
+                    <label for="portal-order-select">Select Order / RFQ to Track</label>
+                    <select id="portal-order-select" class="portal-select-input"></select>
+                </div>
+                
+                <!-- ACTIVE TRACKER CARD -->
+                <div id="portal-active-tracker-container">
+                    <!-- Dynamic Order Tracking Info (Injected via JS) -->
+                </div>
+                
+                <div class="dashboard-footer-actions" style="margin-top: 20px;">
+                    <button class="secondary-btn btn-full" id="btn-portal-resume" style="width: 100%;">Close &amp; Resume Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script File -->
+    <script src="app.js"></script>
+</body>
+</html>
