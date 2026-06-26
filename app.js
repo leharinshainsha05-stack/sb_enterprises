@@ -346,112 +346,204 @@ function initMobileMenu() {
 // ==========================================================================
 
 function initGSAPAnimations() {
+    const mm = gsap.matchMedia();
 
-    // 1. Grid Parallax (Blueprint Background)
-    gsap.to(".bg-grid-1", {
-        yPercent: -15,
-        ease: "none",
-        scrollTrigger: {
-            trigger: "#scrollytelling-wrapper",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true
-        }
+    // DESKTOP LAYOUT ANIMATIONS (>= 993px)
+    mm.add("(min-width: 993px)", () => {
+        // 1. Grid Parallax (Blueprint Background)
+        gsap.to(".bg-grid-1", {
+            yPercent: -15,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#scrollytelling-wrapper",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true
+            }
+        });
+
+        gsap.to(".bg-grid-2", {
+            yPercent: -35,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#scrollytelling-wrapper",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true
+            }
+        });
+
+        // 2. Main Scrollytelling Timeline for Central Valve / Fitting
+        const mainTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#scrollytelling-wrapper",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1 // smooth scrubbing transition
+            }
+        });
+
+        // From Hook (Section 1) to Specs (Section 2)
+        // Rotate and scale up the central brass fitting
+        mainTimeline.to("#hero-product", {
+            rotation: -45,
+            scale: 1.3,
+            duration: 2
+        });
+
+        // From Specs (Section 2) to Anatomy (Section 3)
+        // Return to front, scale up for anatomy explosion
+        mainTimeline.to("#hero-product", {
+            rotation: 0,
+            scale: 1.55,
+            yPercent: 0,
+            xPercent: 0,
+            duration: 2
+        });
+        mainTimeline.to("#anatomy-svg", {
+            opacity: 1,
+            duration: 1
+        }, "<");
+
+        // Trigger Anatomy SVG Lines and annotations
+        initAnatomyLines();
+
+        // From Anatomy (Section 3) to Craft/Video (Section 4)
+        // Rotate slightly, scale to fit content on the left
+        mainTimeline.to("#hero-product", {
+            rotation: 35,
+            scale: 1.15,
+            duration: 2
+        });
+        mainTimeline.to("#anatomy-svg", {
+            opacity: 0,
+            duration: 1
+        }, "<");
+
+        // From Craft (Section 4) to Lineup/Catalog (Section 5)
+        // Reset rotation and center fitting over catalog
+        mainTimeline.to("#hero-product", {
+            rotation: 0,
+            scale: 0.85,
+            yPercent: -20,
+            duration: 2
+        });
+
+        // Fade explore scroll prompt out when scrolling deep
+        gsap.to("#scroll-explore", {
+            opacity: 0,
+            scrollTrigger: {
+                trigger: "#section-specs",
+                start: "top bottom",
+                end: "top center",
+                scrub: true
+            }
+        });
+
+        // From Catalog (Section 5) to final RFQ Portal (Section 6)
+        // Scale and transition the fitting to the left sidebar position of RFQ form
+        mainTimeline.to("#hero-product", {
+            scale: 0.65,
+            xPercent: -80,
+            yPercent: -12,
+            rotation: -15,
+            duration: 2
+        });
+
+        // From RFQ Portal (Section 6) to Contact (Section 7)
+        // Fade out the central product so it doesn't overlay contact information
+        mainTimeline.to("#hero-product", {
+            opacity: 0,
+            duration: 2
+        });
     });
 
-    gsap.to(".bg-grid-2", {
-        yPercent: -35,
-        ease: "none",
-        scrollTrigger: {
-            trigger: "#scrollytelling-wrapper",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true
-        }
-    });
+    // MOBILE/TABLET LAYOUT ANIMATIONS (< 993px)
+    mm.add("(max-width: 992px)", () => {
+        // 1. Grid Parallax (Blueprint Background) - kept subtle for mobile performance
+        gsap.to(".bg-grid-1", {
+            yPercent: -10,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#scrollytelling-wrapper",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true
+            }
+        });
 
-    // 2. Main Scrollytelling Timeline for Central Valve / Fitting
-    const mainTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#scrollytelling-wrapper",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1 // smooth scrubbing transition
-        }
-    });
+        // 2. Mobile Hero Image Local Animation
+        gsap.to(".mobile-hero-image img", {
+            rotation: -30,
+            scale: 1.15,
+            scrollTrigger: {
+                trigger: "#section-hook",
+                start: "top center",
+                end: "bottom center",
+                scrub: true
+            }
+        });
 
-    // From Hook (Section 1) to Specs (Section 2)
-    // Rotate and scale up the central brass fitting
-    mainTimeline.to("#hero-product", {
-        rotation: -45,
-        scale: 1.3,
-        duration: 2
-    });
+        // 3. Spec Cards Fade/Slide-in
+        gsap.fromTo(".left-flank", 
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                scrollTrigger: {
+                    trigger: ".left-flank",
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+        
+        gsap.fromTo(".right-flank", 
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                scrollTrigger: {
+                    trigger: ".right-flank",
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
 
-    // From Specs (Section 2) to Anatomy (Section 3)
-    // Return to front, scale up for anatomy explosion
-    mainTimeline.to("#hero-product", {
-        rotation: 0,
-        scale: 1.55,
-        yPercent: 0,
-        xPercent: 0,
-        duration: 2
-    });
-    mainTimeline.to("#anatomy-svg", {
-        opacity: 1,
-        duration: 1
-    }, "<");
+        // 4. Mobile Anatomy Image Local Animation
+        gsap.fromTo(".mobile-anatomy-image img",
+            { scale: 0.95, rotation: 0 },
+            {
+                scale: 1.1,
+                rotation: 15,
+                scrollTrigger: {
+                    trigger: "#section-anatomy",
+                    start: "top bottom",
+                    end: "center center",
+                    scrub: true
+                }
+            }
+        );
 
-    // Trigger Anatomy SVG Lines and annotations
-    initAnatomyLines();
-
-    // From Anatomy (Section 3) to Craft/Video (Section 4)
-    // Rotate slightly, scale to fit content on the left
-    mainTimeline.to("#hero-product", {
-        rotation: 35,
-        scale: 1.15,
-        duration: 2
-    });
-    mainTimeline.to("#anatomy-svg", {
-        opacity: 0,
-        duration: 1
-    }, "<");
-
-    // From Craft (Section 4) to Lineup/Catalog (Section 5)
-    // Reset rotation and center fitting over catalog
-    mainTimeline.to("#hero-product", {
-        rotation: 0,
-        scale: 0.85,
-        yPercent: -20,
-        duration: 2
-    });
-
-    // Fade explore scroll prompt out when scrolling deep
-    gsap.to("#scroll-explore", {
-        opacity: 0,
-        scrollTrigger: {
-            trigger: "#section-specs",
-            start: "top bottom",
-            end: "top center",
-            scrub: true
-        }
-    });
-
-    // From Catalog (Section 5) to final RFQ Portal (Section 6)
-    // Scale and transition the fitting to the left sidebar position of RFQ form
-    mainTimeline.to("#hero-product", {
-        scale: 0.65,
-        xPercent: -80,
-        yPercent: -12,
-        rotation: -15,
-        duration: 2
-    });
-
-    // From RFQ Portal (Section 6) to Contact (Section 7)
-    // Fade out the central product so it doesn't overlay contact information
-    mainTimeline.to("#hero-product", {
-        opacity: 0,
-        duration: 2
+        // 5. Stacking Callouts Fade/Slide-in
+        gsap.utils.toArray('.anatomy-callout').forEach(card => {
+            gsap.fromTo(card, 
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
     });
 }
 
