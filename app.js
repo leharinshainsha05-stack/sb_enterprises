@@ -216,7 +216,8 @@ const state = {
     searchQuery: '',
     loggedInPhone: null,
     orders: [],
-    tempOrder: null // Cache details during payment checkout before committing
+    tempOrder: null, // Cache details during payment checkout before committing
+    transactionMethod: 'quote' // Track selected B2B checkout method ('quote' or 'checkout')
 };
 
 const CLIENT_BASE_DISCOUNT_PCT = 0.15; // 15% Gold status standard B2B discount for SB Enterprises partners
@@ -866,7 +867,7 @@ function initB2BPortalLogic() {
             const projName = document.getElementById('rfq-proj-name').value;
             const deadlineVal = document.getElementById('rfq-deadline').value;
 
-            const paymentMode = document.querySelector('input[name="payment-mode"]:checked').value;
+            const paymentMode = state.transactionMethod;
             if (paymentMode === 'quote') {
                 const rfqId = `RFQ-2026-${Math.floor(1000 + Math.random() * 9000)}`;
                 
@@ -893,6 +894,9 @@ function initB2BPortalLogic() {
                         { status: 'Ready for Approval', date: '', completed: false, detail: 'Formal PDF quote will be dispatched to ' + emailVal }
                     ]
                 };
+                
+                // Simulate firing direct email / database log
+                console.log(`[SIMULATED DB LOG / EMAIL DISPATCH] Sending RFQ email to ${emailVal.trim()} and logging to central database. RFQ Reference ID: ${rfqId}`);
                 
                 saveOrderToLocalStorage(order);
                 setSessionPhone(phoneVal.trim());
@@ -929,7 +933,8 @@ function initB2BPortalLogic() {
 
     paymentModeRadios.forEach(radio => {
         radio.addEventListener('change', (e) => {
-            if (e.target.value === 'quote') {
+            state.transactionMethod = e.target.value;
+            if (state.transactionMethod === 'quote') {
                 if (engNotesGroup) engNotesGroup.classList.remove('d-none');
                 if (checkoutFieldsGroup) checkoutFieldsGroup.classList.add('d-none');
                 if (checkoutAddress) checkoutAddress.required = false;
