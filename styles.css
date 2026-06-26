@@ -44,6 +44,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -51,6 +53,7 @@ body {
     background-color: var(--color-bg-cream);
     color: var(--color-text-dark);
     overflow-x: hidden;
+    width: 100%;
 }
 
 /* Custom Industrial Cursor */
@@ -253,6 +256,7 @@ body.cursor-hover .custom-cursor {
 #scrollytelling-wrapper {
     position: relative;
     width: 100%;
+    overflow-x: hidden;
 }
 
 #pinned-stage {
